@@ -90,6 +90,18 @@ async function renderItems() {
     button.addEventListener('click', function () {
       updateQueryParams(item.sl, item.tl);
     });
+
+    let removeIcon = document.createElement('span');
+    removeIcon.innerHTML = '<svg focusable="false" width="12" height="12" viewBox="0 0 24 24" class=" NMm5M"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>';
+    removeIcon.style.marginLeft = '10px';
+    removeIcon.style.cursor = 'pointer';
+    removeIcon.addEventListener('click', async function (event) {
+      event.stopPropagation(); // Prevent the button click event
+      await removeItem(item);
+      await renderItems();
+    });
+
+    button.appendChild(removeIcon);
     container.appendChild(button);
   });
 
