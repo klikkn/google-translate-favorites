@@ -82,7 +82,7 @@ async function renderItems() {
     let button = document.createElement('button');
     if (referenceButton) {
       button.className = referenceButton.className;
-      button.style.padding = '5px';
+      button.style.padding = '5px 5px 5px 10px';
       button.style.height = 'auto';
     }
 
@@ -93,7 +93,7 @@ async function renderItems() {
 
     let removeIcon = document.createElement('div');
     removeIcon.innerHTML = '<svg focusable="false" width="14" height="14" viewBox="0 0 24 24" class=" NMm5M"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>';
-    removeIcon.style.marginLeft = '10px';
+    removeIcon.style.marginLeft = '5px';
     removeIcon.style.height = '14px';
     removeIcon.style.width = '14px';
     removeIcon.style.cursor = 'pointer';
