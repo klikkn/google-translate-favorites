@@ -44,6 +44,8 @@ async function saveCurrentValues() {
   let url = new URL(window.location);
   let sl = url.searchParams.get('sl');
   let tl = url.searchParams.get('tl');
+
+  return addItem({ sl, tl });
 }
 
 // View Logic
@@ -55,7 +57,7 @@ function updateQueryParams(sl, tl) {
 }
 
 async function renderItems() {
-  const referenceButton = document.querySelector('button[aria-label="Text translation"]');
+  const referenceButton = document.querySelector('button[aria-label="Image translation"]');
   const nav = document.querySelector('nav');
   nav.parentElement.style.height = 'auto';
   nav.parentElement.style.flexWrap = 'wrap';
@@ -94,12 +96,16 @@ async function renderItems() {
   nav.insertAdjacentElement('afterend', container);
 }
 
-function renderSaveButton() {
+async function renderSaveButton() {
   const saveButton = document.createElement('button');
   saveButton.textContent = 'Save';
-  saveButton.addEventListener('click', saveCurrentValues);
+
+  saveButton.addEventListener('click', async () => {
+    await saveCurrentValues()
+    await renderItems()
+  });
   
-  const referenceButton = document.querySelector('button[aria-label="Text translation"]');
+  const referenceButton = document.querySelector('button[aria-label="Image translation"]');
   if (referenceButton) {
     saveButton.className = referenceButton.className;
   }
