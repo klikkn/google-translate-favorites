@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "description": "A minimal extension to save favorite translations on Google Translate.",
   "permissions": [
-    "activeTab",
     "storage"
   ],
   "content_scripts": [
