@@ -29,10 +29,10 @@ const addItem = async (item) => {
       items.push(item);
       return setItems(items);
     } else {
-      console.log('Item already exists');
+      alert('Item already exists');
     }
   }).catch(error => {
-    console.error('Error adding item:', error);
+    alert('Error adding item:', error);
   });
 };
 
@@ -41,7 +41,7 @@ const removeItem = async ({ sl, tl }) => {
     const updatedItems = items.filter(item => item.sl !== sl || item.tl !== tl);
     return setItems(updatedItems);
   }).catch(error => {
-    console.error('Error removing item:', error);
+    alert('Error removing item:', error);
   });
 };
 
@@ -71,6 +71,13 @@ const initDOM = () => {
   nav.parentElement.style.height = 'auto';
   nav.parentElement.style.flexWrap = 'wrap';
 
+  const gftContainer = document.createElement('div');
+  gftContainer.id='gft-container';
+  gftContainer.style.width = '100%';
+  gftContainer.style.padding = '0 12px';
+  gftContainer.style.display = 'flex';
+  gftContainer.style.gap = '5px';
+
   const saveButton = document.createElement('button');
   saveButton.id='save-quick-link';
   saveButton.dataset.gtfRole='save-quick-link';
@@ -79,7 +86,6 @@ const initDOM = () => {
   const quickLinkList = document.createElement('div');
   quickLinkList.id = 'quick-link-list';
   quickLinkList.style.display = 'flex';
-  quickLinkList.style.padding = '0 12px';
   quickLinkList.style.gap = '5px';
 
   const quickLinkItem = document.createElement('button');
@@ -101,10 +107,12 @@ const initDOM = () => {
     quickLinkItem.className = referenceButton.className;
   }
 
-  return { nav, saveButton, quickLinkList, removeIcon, quickLinkItem };
+  nav.parentNode.appendChild(gftContainer);
+
+  return { gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem };
 }
 
-const render = async ({ nav, saveButton, quickLinkList, removeIcon, quickLinkItem }) => {
+const render = async ({ gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem }) => {
   const items = await getItems();
 
   quickLinkList.innerHTML = '';
@@ -125,15 +133,15 @@ const render = async ({ nav, saveButton, quickLinkList, removeIcon, quickLinkIte
   existingQuickLinkList?.remove();
   existingSaveButton?.remove();
 
-  nav.appendChild(saveButton);
-  nav.appendChild(quickLinkList);
+  gftContainer.appendChild(saveButton);
+  gftContainer.appendChild(quickLinkList);
 }
 
 // Initialization
-const { nav, saveButton, quickLinkList, removeIcon, quickLinkItem } = initDOM();
+const { gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem } = initDOM();
 
 const runOnStart = () => {
-  render({ nav, saveButton, quickLinkList, removeIcon, quickLinkItem });
+  render({ gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem });
 };
 
 if (document.readyState !== 'loading') {
@@ -152,7 +160,7 @@ document.addEventListener('click', async (event) => {
         sl: event.target.parentNode.dataset.sl,
         tl: event.target.parentNode.dataset.tl,
       }).then(() => {
-        render({ nav, saveButton, quickLinkList, removeIcon, quickLinkItem });
+        render({ gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem });
       });
       break;
     case 'quick-link-item':
@@ -163,7 +171,7 @@ document.addEventListener('click', async (event) => {
       break;
     case 'save-quick-link':
       saveCurrentValue().then(() => {
-        render({ nav, saveButton, quickLinkList, removeIcon, quickLinkItem });
+        render({ gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem });
       });
       break;
     default:
