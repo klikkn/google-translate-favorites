@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Google translate favorites",
+  "name": "Google Translate Favorites",
   "version": "1.0",
-  "description": "A minimal extension to enhance website functionality",
+  "description": "A minimal extension to save favorite translations on Google Translate.",
   "permissions": [
     "activeTab",
     "storage"
