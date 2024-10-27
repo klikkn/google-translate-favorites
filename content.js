@@ -1,6 +1,6 @@
-async function getItems() {
+const getItems = async () => {
   return new Promise((resolve, reject) => {
-    chrome.storage.sync.get({ items: [] }, function (result) {
+    chrome.storage.sync.get({ items: [] }, (result) => {
       if (chrome.runtime.lastError) {
         reject(chrome.runtime.lastError);
       } else {
@@ -8,11 +8,11 @@ async function getItems() {
       }
     });
   });
-}
+};
 
-async function setItems(items) {
+const setItems = async (items) => {
   return new Promise((resolve, reject) => {
-    chrome.storage.sync.set({ items: items }, function () {
+    chrome.storage.sync.set({ items: items }, () => {
       if (chrome.runtime.lastError) {
         reject(chrome.runtime.lastError);
       } else {
@@ -20,124 +20,153 @@ async function setItems(items) {
       }
     });
   });
-}
+};
 
-async function addItem(item) {
+const addItem = async (item) => {
   return getItems().then(items => {
-    items.push(item);
-    return setItems(items);
+    const isDuplicate = items.some(existingItem => existingItem.sl === item.sl && existingItem.tl === item.tl);
+    if (!isDuplicate) {
+      items.push(item);
+      return setItems(items);
+    } else {
+      console.log('Item already exists');
+    }
   }).catch(error => {
     console.error('Error adding item:', error);
   });
-}
+};
 
-async function removeItem(itemToRemove) {
+const removeItem = async ({ sl, tl }) => {
   return getItems().then(items => {
-    const updatedItems = items.filter(item => item.sl !== itemToRemove.sl || item.tl !== itemToRemove.tl);
+    const updatedItems = items.filter(item => item.sl !== sl || item.tl !== tl);
     return setItems(updatedItems);
   }).catch(error => {
     console.error('Error removing item:', error);
   });
-}
-
-async function saveCurrentValues() {
-  let url = new URL(window.location);
-  let sl = url.searchParams.get('sl');
-  let tl = url.searchParams.get('tl');
-
-  return addItem({ sl, tl });
-}
+};
 
 // View Logic
-function updateQueryParams(sl, tl) {
+const getQueryParams = () => {
+  const url = new URL(window.location);
+  return {
+    sl: url.searchParams.get('sl'),
+    tl: url.searchParams.get('tl'),
+  };
+};
+
+const setQueryParams = ({sl, tl}) => {
   let url = new URL(window.location);
   url.searchParams.set('sl', sl);
   url.searchParams.set('tl', tl);
   window.location.assign(url);
-}
+};
 
-async function renderItems() {
-  const referenceButton = document.querySelector('button[aria-label="Image translation"]');
+const saveCurrentValue = async () => {
+  const { sl, tl } = getQueryParams();
+  return addItem({ sl, tl });
+};
+
+const initDOM = () => {
   const nav = document.querySelector('nav');
   nav.parentElement.style.height = 'auto';
   nav.parentElement.style.flexWrap = 'wrap';
-  if (!nav) {
-    return;
-  }
 
-  const container = document.createElement('div');
-  container.id = 'items-container';
-  container.style.display = 'flex';
-  container.style.padding = '0 12px';
-  container.style.gap = '5px';
-
-  const existingContainer = document.getElementById('items-container');
-  if (existingContainer) {
-    existingContainer.remove();
-  }
-
-  const items = await getItems();
-
-  items.forEach(item => {
-    let button = document.createElement('button');
-    if (referenceButton) {
-      button.className = referenceButton.className;
-      button.style.padding = '5px 5px 5px 10px';
-      button.style.height = 'auto';
-    }
-
-    button.textContent = `${item.sl}:${item.tl}`;
-    button.addEventListener('click', function () {
-      updateQueryParams(item.sl, item.tl);
-    });
-
-    let removeIcon = document.createElement('div');
-    removeIcon.innerHTML = '<svg focusable="false" width="14" height="14" viewBox="0 0 24 24" class=" NMm5M"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>';
-    removeIcon.style.marginLeft = '5px';
-    removeIcon.style.height = '14px';
-    removeIcon.style.width = '14px';
-    removeIcon.style.cursor = 'pointer';
-    removeIcon.addEventListener('click', async function (event) {
-      event.stopPropagation(); // Prevent the button click event
-      await removeItem(item);
-      await renderItems();
-    });
-
-    button.appendChild(removeIcon);
-    container.appendChild(button);
-  });
-
-  nav.insertAdjacentElement('afterend', container);
-}
-
-async function renderSaveButton() {
   const saveButton = document.createElement('button');
+  saveButton.id='save-quick-link';
+  saveButton.dataset.gtfRole='save-quick-link';
   saveButton.textContent = 'Save';
 
-  saveButton.addEventListener('click', async () => {
-    await saveCurrentValues()
-    await renderItems()
-  });
-  
+  const quickLinkList = document.createElement('div');
+  quickLinkList.id = 'quick-link-list';
+  quickLinkList.style.display = 'flex';
+  quickLinkList.style.padding = '0 12px';
+  quickLinkList.style.gap = '5px';
+
+  const quickLinkItem = document.createElement('button');
+  quickLinkItem.dataset.gtfRole='quick-link-item';
+  quickLinkItem.style.padding = '5px 5px 5px 10px';
+  quickLinkItem.style.height = 'auto';
+
+  const removeIcon = document.createElement('div');
+  removeIcon.dataset.gtfRole='quick-link-remove';
+  removeIcon.innerHTML = '<svg style="pointer-events: none" focusable="false" width="14" height="14" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>';
+  removeIcon.style.marginLeft = '5px';
+  removeIcon.style.height = '14px';
+  removeIcon.style.width = '14px';
+  removeIcon.style.cursor = 'pointer';
+
   const referenceButton = document.querySelector('button[aria-label="Image translation"]');
   if (referenceButton) {
     saveButton.className = referenceButton.className;
+    quickLinkItem.className = referenceButton.className;
   }
 
-  const nav = document.querySelector('nav');
-  if (nav) {
-    nav.insertAdjacentElement('afterend', saveButton);
-  }
+  return { nav, saveButton, quickLinkList, removeIcon, quickLinkItem };
+}
+
+const render = async ({ nav, saveButton, quickLinkList, removeIcon, quickLinkItem }) => {
+  const items = await getItems();
+
+  quickLinkList.innerHTML = '';
+
+  items.forEach(({ sl, tl }) => {
+    const quickLinkItemClone = quickLinkItem.cloneNode(true);
+    quickLinkItemClone.dataset.sl = sl;
+    quickLinkItemClone.dataset.tl = tl;
+    quickLinkItemClone.textContent = `${sl}:${tl}`;
+    quickLinkItemClone.appendChild(removeIcon.cloneNode(true));
+
+    quickLinkList.appendChild(quickLinkItemClone);
+  });
+
+  const existingQuickLinkList = document.getElementById(quickLinkList.getAttribute('id'));
+  const existingSaveButton = document.getElementById(saveButton.getAttribute('id'));
+  
+  existingQuickLinkList?.remove();
+  existingSaveButton?.remove();
+
+  nav.appendChild(saveButton);
+  nav.appendChild(quickLinkList);
 }
 
 // Initialization
-function runOnStart() {
-  renderItems();
-  renderSaveButton();
-}
+const { nav, saveButton, quickLinkList, removeIcon, quickLinkItem } = initDOM();
+
+const runOnStart = () => {
+  render({ nav, saveButton, quickLinkList, removeIcon, quickLinkItem });
+};
 
 if (document.readyState !== 'loading') {
   runOnStart();
 }
 
 document.addEventListener('DOMContentLoaded', runOnStart);
+document.addEventListener('click', async (event) => {    
+  if (!event.target.dataset.gtfRole) {
+    return;
+  }
+
+  switch(event.target.dataset.gtfRole) {    
+    case 'quick-link-remove':      
+      removeItem({
+        sl: event.target.parentNode.dataset.sl,
+        tl: event.target.parentNode.dataset.tl,
+      }).then(() => {
+        render({ nav, saveButton, quickLinkList, removeIcon, quickLinkItem });
+      });
+      break;
+    case 'quick-link-item':
+      setQueryParams({
+        sl: event.target.dataset.sl,
+        tl: event.target.dataset.tl,
+      })
+      break;
+    case 'save-quick-link':
+      saveCurrentValue().then(() => {
+        render({ nav, saveButton, quickLinkList, removeIcon, quickLinkItem });
+      });
+      break;
+    default:
+      break;
+  }
+})
