@@ -73,8 +73,8 @@ const initDOM = () => {
 
   const gftContainer = document.createElement('div');
   gftContainer.id='gft-container';
+  gftContainer.className = nav.className;
   gftContainer.style.width = '100%';
-  gftContainer.style.padding = '0 12px';
   gftContainer.style.display = 'flex';
   gftContainer.style.gap = '5px';
 
