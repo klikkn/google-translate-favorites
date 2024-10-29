@@ -61,7 +61,11 @@ const setQueryParams = ({sl, tl}) => {
   window.location.assign(url);
 };
 
-const saveCurrentValue = async () => {
+const setLanguagePair = ({sl, tl}) => {
+  setQueryParams({sl, tl});
+};
+
+const saveLanguagePair = async () => {
   const { sl, tl } = getQueryParams();
   return addItem({ sl, tl });
 };
@@ -164,13 +168,13 @@ document.addEventListener('click', async (event) => {
       });
       break;
     case 'quick-link-item':
-      setQueryParams({
+      setLanguagePair({
         sl: event.target.dataset.sl,
         tl: event.target.dataset.tl,
       })
       break;
     case 'save-quick-link':
-      saveCurrentValue().then(() => {
+      saveLanguagePair().then(() => {
         render({ gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem });
       });
       break;
