@@ -85,7 +85,7 @@ const initDOM = () => {
   const saveButton = document.createElement('button');
   saveButton.id='save-quick-link';
   saveButton.dataset.gtfRole='save-quick-link';
-  saveButton.textContent = 'Save';
+  saveButton.textContent = 'Save language pair';
 
   const quickLinkList = document.createElement('div');
   quickLinkList.id = 'quick-link-list';
