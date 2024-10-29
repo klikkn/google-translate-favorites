@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Google Tranlate Favorite Languages",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A minimal extension to save and manage favorite language pairs on Google Translate web page",
   "permissions": [
     "storage"
