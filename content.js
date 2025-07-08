@@ -47,22 +47,23 @@ const removeItem = async ({ sl, tl }) => {
 
 // View Logic
 const getLanguagePair = () => {
-  const url = new URL(window.location);
-  return {
-    sl: url.searchParams.get('sl'),
-    tl: url.searchParams.get('tl'),
-  };
+  const urlParams = new URLSearchParams(window.location.search);
+  const sl = urlParams.get('sl');
+  const tl = urlParams.get('tl');
+  
+  return { sl, tl };
 };
 
-const setQueryParams = ({sl, tl}) => {
+const setQueryParams = ({ sl, tl }) => {
   let url = new URL(window.location);
   url.searchParams.set('sl', sl);
   url.searchParams.set('tl', tl);
+
   window.location.assign(url);
 };
 
-const setLanguagePair = ({sl, tl}) => {
-  setQueryParams({sl, tl});
+const setLanguagePair = ({ sl, tl }) => {
+  setQueryParams({ sl, tl });
 };
 
 const saveLanguagePair = async () => {
@@ -76,7 +77,7 @@ const initDOM = () => {
   nav.parentElement.style.flexWrap = 'wrap';
 
   const gftContainer = document.createElement('div');
-  gftContainer.id='gft-container';
+  gftContainer.id = 'gft-container';
   gftContainer.className = nav.className;
   gftContainer.style.width = '100%';
   gftContainer.style.display = 'flex';
@@ -90,7 +91,7 @@ const initDOM = () => {
   quickLinkList.style.gap = '5px';
 
   const quickLinkItem = document.createElement('button');
-  quickLinkItem.dataset.gtfRole='quick-link-item';
+  quickLinkItem.dataset.gtfRole = 'quick-link-item';
   quickLinkList.style.display = 'flex';
   quickLinkList.style.alignItems = 'center';
   quickLinkItem.style.margin = '0';
@@ -99,8 +100,8 @@ const initDOM = () => {
   quickLinkItem.style.gap = '5px';
 
   const saveButton = document.createElement('button');
-  saveButton.id='save-quick-link';
-  saveButton.dataset.gtfRole='save-quick-link';
+  saveButton.id = 'save-quick-link';
+  saveButton.dataset.gtfRole = 'save-quick-link';
   quickLinkList.style.display = 'flex';
   quickLinkList.style.alignItems = 'center';
   saveButton.style.margin = '0';
@@ -109,7 +110,7 @@ const initDOM = () => {
   saveButton.style.gap = '5px';
 
   const removeIcon = document.createElement('div');
-  removeIcon.dataset.gtfRole='quick-link-remove';
+  removeIcon.dataset.gtfRole = 'quick-link-remove';
   removeIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="#1967d2" style="pointer-events: none; position: relative; top: 1px" focusable="false" width="14" height="14" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>';
   removeIcon.style.height = '14px';
   removeIcon.style.width = '14px';
@@ -137,6 +138,7 @@ const initDOM = () => {
 
 const render = async ({ gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem }) => {
   const items = await getItems();
+  const { sl: currentSl, tl: currentTl } = getLanguagePair();
 
   quickLinkList.innerHTML = '';
 
@@ -147,23 +149,29 @@ const render = async ({ gftContainer, saveButton, quickLinkList, removeIcon, qui
     quickLinkItemClone.textContent = `${sl}:${tl}`;
     quickLinkItemClone.appendChild(removeIcon.cloneNode(true));
 
+    if (sl === currentSl && tl === currentTl) {
+      quickLinkItemClone.style.border = '2px solid';
+    }
+
     quickLinkList.appendChild(quickLinkItemClone);
   });
 
   const existingQuickLinkList = document.getElementById(quickLinkList.getAttribute('id'));
   const existingSaveButton = document.getElementById(saveButton.getAttribute('id'));
-  
+
   existingQuickLinkList?.remove();
   existingSaveButton?.remove();
 
-  const { sl, tl } = getLanguagePair();
-  saveButton.innerHTML = `
-    <svg xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;" fill="#1967d2" height="18px" viewBox="0 0 24 24" width="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-    <span style="pointer-events: none;" >${sl}:${tl}<span>
-  `;
-
   gftContainer.appendChild(quickLinkList);
-  gftContainer.appendChild(saveButton);
+  
+  if (!items.some(item => item.sl === currentSl && item.tl === currentTl)) {
+    saveButton.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;" fill="#1967d2" height="18px" viewBox="0 0 24 24" width="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+      <span style="pointer-events: none;" >${currentSl}:${currentTl}<span>
+    `;
+
+    gftContainer.appendChild(saveButton);
+  }
 }
 
 // Initialization
@@ -178,13 +186,13 @@ if (document.readyState !== 'loading') {
 }
 
 document.addEventListener('DOMContentLoaded', runOnStart);
-document.addEventListener('click', async (event) => {    
+document.addEventListener('click', async (event) => {
   if (!event.target.dataset.gtfRole) {
     return;
   }
 
-  switch(event.target.dataset.gtfRole) {    
-    case 'quick-link-remove':      
+  switch (event.target.dataset.gtfRole) {
+    case 'quick-link-remove':
       removeItem({
         sl: event.target.parentNode.dataset.sl,
         tl: event.target.parentNode.dataset.tl,
@@ -200,9 +208,9 @@ document.addEventListener('click', async (event) => {
       break;
     case 'save-quick-link':
       saveLanguagePair()
-      .then(() => {
-        render({ gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem });
-      });
+        .then(() => {
+          render({ gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem });
+        });
       break;
     default:
       break;
