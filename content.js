@@ -75,11 +75,11 @@ const initDOM = () => {
   const nav = document.querySelector('nav');
   nav.parentElement.style.height = 'auto';
   nav.parentElement.style.flexWrap = 'wrap';
+  nav.parentElement.style.justifyContent = 'space-between';
 
   const gftContainer = document.createElement('div');
   gftContainer.id = 'gft-container';
   gftContainer.className = nav.className;
-  gftContainer.style.width = '100%';
   gftContainer.style.display = 'flex';
   gftContainer.style.flexWrap = 'wrap';
   gftContainer.style.gap = '5px';
