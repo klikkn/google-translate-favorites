@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Idiomas favoritos de Google Traductor" }
+  "ext_name": { "message": "Idiomas favoritos de Google Traductor" },
+  "ext_description": { "message": "Una extensión mínima para guardar y gestionar pares de idiomas favoritos en la página web de Google Traductor" }
 }

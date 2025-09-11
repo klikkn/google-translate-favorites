@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "اللغات المفضلة في ترجمة Google" }
+  "ext_name": { "message": "اللغات المفضلة في ترجمة Google" },
+  "ext_description": { "message": "إضافة بسيطة لحفظ وإدارة أزواج اللغات المفضلة في صفحة ويب ترجمة Google" }
 }

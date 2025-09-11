@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Google Oversetter favorittspråk" }
+  "ext_name": { "message": "Google Oversetter favorittspråk" },
+  "ext_description": { "message": "Et minimalt tillegg for å lagre og administrere favorittspråkpar på Google Oversetter-nettsiden" }
 }

@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Ulubione języki Tłumacza Google" }
+  "ext_name": { "message": "Ulubione języki Tłumacza Google" },
+  "ext_description": { "message": "Minimalne rozszerzenie do zapisywania i zarządzania ulubionymi parami językowymi na stronie Tłumacza Google" }
 }

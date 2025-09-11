@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Google 번역 즐겨찾는 언어" }
+  "ext_name": { "message": "Google 번역 즐겨찾는 언어" },
+  "ext_description": { "message": "Google 번역 웹페이지에서 즐겨찾는 언어 쌍을 저장하고 관리하기 위한 최소한의 확장 프로그램" }
 }

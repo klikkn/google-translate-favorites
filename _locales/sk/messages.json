@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Obľúbené jazyky Prekladača Google" }
+  "ext_name": { "message": "Obľúbené jazyky Prekladača Google" },
+  "ext_description": { "message": "Minimálne rozšírenie na ukladanie a správu obľúbených jazykových párov na stránke Prekladača Google" }
 }

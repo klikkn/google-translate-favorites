@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Ngôn ngữ yêu thích của Google Dịch" }
+  "ext_name": { "message": "Ngôn ngữ yêu thích của Google Dịch" },
+  "ext_description": { "message": "Tiện ích tối giản để lưu và quản lý các cặp ngôn ngữ yêu thích trên trang web Google Dịch" }
 }

@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Google 翻訳のお気に入り言語" }
+  "ext_name": { "message": "Google 翻訳のお気に入り言語" },
+  "ext_description": { "message": "Google翻訳のウェブページでお気に入りの言語ペアを保存・管理するための最小限の拡張機能" }
 }

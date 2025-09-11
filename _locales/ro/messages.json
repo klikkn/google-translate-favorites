@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Limbile preferate din Google Traducere" }
+  "ext_name": { "message": "Limbile preferate din Google Traducere" },
+  "ext_description": { "message": "O extensie minimă pentru salvarea și gestionarea perechilor de limbi favorite pe pagina web Google Traducere" }
 }

@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Bahasa Favorit Google Terjemahan" }
+  "ext_name": { "message": "Bahasa Favorit Google Terjemahan" },
+  "ext_description": { "message": "Ekstensi minimal untuk menyimpan dan mengelola pasangan bahasa favorit di halaman web Google Terjemahan" }
 }

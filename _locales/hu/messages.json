@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "A Google Fordító kedvenc nyelvei" }
+  "ext_name": { "message": "A Google Fordító kedvenc nyelvei" },
+  "ext_description": { "message": "Egy minimális kiterjesztés kedvenc nyelvpárok mentéséhez és kezeléséhez a Google Fordító weboldalán" }
 }

@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Mga Paboritong Wika sa Google Translate" }
+  "ext_name": { "message": "Mga Paboritong Wika sa Google Translate" },
+  "ext_description": { "message": "Isang minimal na extension para i-save at pamahalaan ang mga paboritong pares ng wika sa web page ng Google Translate" }
 }

@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Google Oversætters yndlingssprog" }
+  "ext_name": { "message": "Google Oversætters yndlingssprog" },
+  "ext_description": { "message": "En minimal udvidelse til at gemme og administrere foretrukne sprogpar på Google Oversætters webside" }
 }

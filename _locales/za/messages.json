@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Google Translate Favourite Languages" }
+  "ext_name": { "message": "Google Translate Favourite Languages" },
+  "ext_description": { "message": "A minimal extension to save and manage favourite language pairs on the Google Translate web page" }
 }

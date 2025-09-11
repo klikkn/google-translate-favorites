@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Google Translate favoriete talen" }
+  "ext_name": { "message": "Google Translate favoriete talen" },
+  "ext_description": { "message": "Een minimale extensie om favoriete taalkoppels op de Google Translate-webpagina op te slaan en te beheren" }
 }

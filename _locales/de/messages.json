@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Google Übersetzer Lieblingssprachen" }
+  "ext_name": { "message": "Google Übersetzer Lieblingssprachen" },
+  "ext_description": { "message": "Eine minimale Erweiterung zum Speichern und Verwalten bevorzugter Sprachpaare auf der Google-Translate-Webseite" }
 }

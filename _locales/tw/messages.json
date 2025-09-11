@@ -1,3 +1,4 @@
 {
-  "ext_name": { "message": "Google 翻譯我的最愛語言" }
+  "ext_name": { "message": "Google 翻譯我的最愛語言" },
+  "ext_description": { "message": "在 Google 翻譯網頁上儲存與管理最愛語言配對的精簡擴充功能" }
 }
