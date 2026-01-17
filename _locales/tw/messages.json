@@ -1,4 +1,8 @@
 {
-  "ext_name": { "message": "Google 翻譯我的最愛語言" },
-  "ext_description": { "message": "在 Google 翻譯網頁上儲存與管理最愛語言配對的精簡擴充功能" }
+  "ext_name": {
+    "message": "Google 翻訳™ 快速切換 - 最愛語言"
+  },
+  "ext_description": {
+    "message": "厭倦了不斷滾動下拉菜單尋找「法語」或「中文」嗎？每次翻譯節省 5 秒鐘。保存您的首選語言對，並一鍵即時切換。"
+  }
 }

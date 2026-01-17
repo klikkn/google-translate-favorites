@@ -1,4 +1,8 @@
 {
-  "ext_name": { "message": "Lingue preferite di Google Traduttore" },
-  "ext_description": { "message": "Un'estensione minimale per salvare e gestire le coppie di lingue preferite sulla pagina web di Google Traduttore" }
+  "ext_name": {
+    "message": "Cambio Rapido per Google Traduction™ - Lingue Preferite"
+  },
+  "ext_description": {
+    "message": "Stanco di scorrere continuamente il menu a discesa per trovare 'Francese' o 'Cinese'? Risparmia 5 secondi su ogni traduzione. Salva le tue coppie di lingue principali e cambia istantaneamente con un clic."
+  }
 }

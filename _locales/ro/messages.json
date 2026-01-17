@@ -1,4 +1,8 @@
 {
-  "ext_name": { "message": "Limbile preferate din Google Traducere" },
-  "ext_description": { "message": "O extensie minimă pentru salvarea și gestionarea perechilor de limbi favorite pe pagina web Google Traducere" }
+  "ext_name": {
+    "message": "Comutare rapidă pentru Google Translate™ - Limbi preferate"
+  },
+  "ext_description": {
+    "message": "V-ați săturat să derulați constant prin meniul derulant pentru a găsi „Franceză” sau „Chineză”? Economisiți 5 secunde la fiecare traducere. Salvați perechile de limbi de top și comutați instantaneu cu un singur clic."
+  }
 }

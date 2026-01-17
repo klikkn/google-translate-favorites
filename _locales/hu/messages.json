@@ -1,4 +1,8 @@
 {
-  "ext_name": { "message": "A Google Fordító kedvenc nyelvei" },
-  "ext_description": { "message": "Egy minimális kiterjesztés kedvenc nyelvpárok mentéséhez és kezeléséhez a Google Fordító weboldalán" }
+  "ext_name": {
+    "message": "Gyors váltás a Google Fordítóhoz™ - Kedvenc nyelvek"
+  },
+  "ext_description": {
+    "message": "Unja már, hogy folyamatosan görgeti a legördülő menüt, hogy megtalálja a 'francia' vagy 'kínai' nyelvet? Takarítson meg 5 másodpercet minden fordításon. Mentse el legfontosabb nyelvi párjait, és váltson azonnal egyetlen kattintással."
+  }
 }

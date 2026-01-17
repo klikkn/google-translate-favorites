@@ -1,4 +1,8 @@
 {
-  "ext_name": { "message": "Google Translate Favorite Languages" },
-  "ext_description": { "message": "A minimal extension to save and manage favorite language pairs on Google Translate web page" }
+  "ext_name": {
+    "message": "Schnellwechsel für Google Translate™ - Lieblingssprachen"
+  },
+  "ext_description": {
+    "message": "Sind Sie es leid, ständig durch das Dropdown-Menü zu scrollen, um 'Französisch' oder 'Chinesisch' zu finden? Sparen Sie 5 Sekunden bei jeder Übersetzung. Speichern Sie Ihre wichtigsten Sprachpaare und wechseln Sie sofort mit einem Klick."
+  }
 }

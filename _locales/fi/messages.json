@@ -1,4 +1,8 @@
 {
-  "ext_name": { "message": "Google Kääntäjän suosikkikielet" },
-  "ext_description": { "message": "Kevyt laajennus suosikkikieliparien tallentamiseen ja hallintaan Google Kääntäjän verkkosivulla" }
+  "ext_name": {
+    "message": "Pikakytkin Google Kääntäjälle™ - Suosikkikielet"
+  },
+  "ext_description": {
+    "message": "Oletko kyllästynyt selaamaan jatkuvasti pudotusvalikkoa löytääksesi 'ranskan' tai 'kiinan'? Säästä 5 sekuntia jokaisessa käännöksessä. Tallenna parhaat kieliparisi ja vaihda heti yhdellä napsautuksella."
+  }
 }

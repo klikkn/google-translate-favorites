@@ -1,4 +1,8 @@
 {
-  "ext_name": { "message": "Bahasa Kegemaran Google Terjemahan" },
-  "ext_description": { "message": "Sambungan minimum untuk menyimpan dan mengurus pasangan bahasa kegemaran pada halaman web Google Terjemahan" }
+  "ext_name": {
+    "message": "Pertukaran Pantas untuk Google Translate™ - Bahasa Kegemaran"
+  },
+  "ext_description": {
+    "message": "Bosan terus menatal menu lungsur untuk mencari 'Perancis' atau 'Cina'? Jimat 5 saat pada setiap terjemahan. Simpan pasangan bahasa teratas anda dan tukar serta-merta dengan satu klik."
+  }
 }

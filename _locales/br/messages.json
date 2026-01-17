@@ -1,4 +1,8 @@
 {
-  "ext_name": { "message": "Idiomas favoritos do Google Tradutor" },
-  "ext_description": { "message": "Uma extensão mínima para salvar e gerenciar pares de idiomas favoritos na página da Web do Google Tradutor" }
+  "ext_name": {
+    "message": "Troca Rápida para Google Traduction™ - Idiomas Favoritos"
+  },
+  "ext_description": {
+    "message": "Cansado de rolar constantemente o menu suspenso para encontrar 'Francês' ou 'Chinês'? Economize 5 segundos em cada tradução. Salve seus principais pares de idiomas e alterne instantaneamente com um clique."
+  }
 }

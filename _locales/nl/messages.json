@@ -1,4 +1,8 @@
 {
-  "ext_name": { "message": "Google Translate favoriete talen" },
-  "ext_description": { "message": "Een minimale extensie om favoriete taalkoppels op de Google Translate-webpagina op te slaan en te beheren" }
+  "ext_name": {
+    "message": "Snel wisselen voor Google Translate™ - Favoriete talen"
+  },
+  "ext_description": {
+    "message": "Moe van het constant scrollen door het vervolgkeuzemenu om 'Frans' of 'Chinees' te vinden? Bespaar 5 seconden op elke vertaling. Sla uw beste taalparen op en wissel direct met één klik."
+  }
 }

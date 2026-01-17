@@ -1,4 +1,8 @@
 {
-  "ext_name": { "message": "Ulubione języki Tłumacza Google" },
-  "ext_description": { "message": "Minimalne rozszerzenie do zapisywania i zarządzania ulubionymi parami językowymi na stronie Tłumacza Google" }
+  "ext_name": {
+    "message": "Szybkie przełączanie dla Google Translate™ - Ulubione języki"
+  },
+  "ext_description": {
+    "message": "Masz dość ciągłego przewijania menu, aby znaleźć 'francuski' lub 'chiński'? Zaoszczędź 5 sekund na każdym tłumaczeniu. Zapisz swoje ulubione pary językowe i przełączaj się natychmiast jednym kliknięciem."
+  }
 }

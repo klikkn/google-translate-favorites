@@ -1,4 +1,8 @@
 {
-  "ext_name": { "message": "Google Oversetter favorittspråk" },
-  "ext_description": { "message": "Et minimalt tillegg for å lagre og administrere favorittspråkpar på Google Oversetter-nettsiden" }
+  "ext_name": {
+    "message": "Hurtigbytte for Google Translate™ - Favorittspråk"
+  },
+  "ext_description": {
+    "message": "Lei av å stadig bla gjennom rullegardinmenyen for å finne 'fransk' eller 'kinesisk'? Spar 5 sekunder på hver oversettelse. Lagre dine beste språkpar og bytt umiddelbart med ett klikk."
+  }
 }

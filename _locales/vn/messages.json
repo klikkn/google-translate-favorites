@@ -1,4 +1,8 @@
 {
-  "ext_name": { "message": "Ngôn ngữ yêu thích của Google Dịch" },
-  "ext_description": { "message": "Tiện ích tối giản để lưu và quản lý các cặp ngôn ngữ yêu thích trên trang web Google Dịch" }
+  "ext_name": {
+    "message": "Chuyển đổi nhanh cho Google Dịch™ - Ngôn ngữ yêu thích"
+  },
+  "ext_description": {
+    "message": "Bạn mệt mỏi vì phải liên tục cuộn qua menu thả xuống để tìm 'Tiếng Pháp' hoặc 'Tiếng Trung'? Tiết kiệm 5 giây cho mỗi bản dịch. Lưu các cặp ngôn ngữ hàng đầu của bạn và chuyển đổi ngay lập tức chỉ bằng một cú nhấp chuột."
+  }
 }

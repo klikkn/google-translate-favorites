@@ -1,4 +1,8 @@
 {
-  "ext_name": { "message": "Google Översätt favoritspråk" },
-  "ext_description": { "message": "Ett minimalt tillägg för att spara och hantera favoritspråkkombinationer på Google Översätts webbsida" }
+  "ext_name": {
+    "message": "Snabbväxling för Google Translate™ - Favoritspråk"
+  },
+  "ext_description": {
+    "message": "Trött på att ständigt bläddra genom rullgardinsmenyn för att hitta 'franska' eller 'kinesiska'? Spara 5 sekunder på varje översättning. Spara dina bästa språkpar och växla direkt med ett klick."
+  }
 }
