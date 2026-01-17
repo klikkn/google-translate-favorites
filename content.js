@@ -50,7 +50,7 @@ const getLanguagePair = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const sl = urlParams.get('sl');
   const tl = urlParams.get('tl');
-  
+
   return { sl, tl };
 };
 
@@ -117,7 +117,7 @@ const initDOM = () => {
   removeIcon.style.cursor = 'pointer';
 
   const referenceButton = document.querySelector('nav div[data-is-touch-wrapper=true] > button');
-  
+
   if (referenceButton) {
     saveButton.className = referenceButton.className;
     quickLinkItem.className = referenceButton.className;
@@ -163,7 +163,7 @@ const render = async ({ gftContainer, saveButton, quickLinkList, removeIcon, qui
   existingSaveButton?.remove();
 
   gftContainer.appendChild(quickLinkList);
-  
+
   if (!items.some(item => item.sl === currentSl && item.tl === currentTl)) {
     saveButton.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;" fill="#1967d2" height="18px" viewBox="0 0 24 24" width="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
@@ -193,6 +193,12 @@ document.addEventListener('click', async (event) => {
 
   switch (event.target.dataset.gtfRole) {
     case 'quick-link-remove':
+      chrome.runtime.sendMessage({
+        action: 'track_event',
+        category: 'feature_usage',
+        label: 'quick_link_remove'
+      });
+
       removeItem({
         sl: event.target.parentNode.dataset.sl,
         tl: event.target.parentNode.dataset.tl,
@@ -201,12 +207,24 @@ document.addEventListener('click', async (event) => {
       });
       break;
     case 'quick-link-item':
+      chrome.runtime.sendMessage({
+        action: 'track_event',
+        category: 'feature_usage',
+        label: 'quick_link_item'
+      });
+
       setLanguagePair({
         sl: event.target.dataset.sl,
         tl: event.target.dataset.tl,
       })
       break;
     case 'save-quick-link':
+      chrome.runtime.sendMessage({
+        action: 'track_event',
+        category: 'feature_usage',
+        label: 'save_quick_link'
+      });
+
       saveLanguagePair()
         .then(() => {
           render({ gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem });
