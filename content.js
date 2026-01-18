@@ -98,6 +98,7 @@ const initDOM = () => {
   quickLinkItem.style.padding = '5px 5px 5px 10px';
   quickLinkItem.style.height = 'auto';
   quickLinkItem.style.gap = '5px';
+  quickLinkItem.style.borderRadius = '16px';
 
   const saveButton = document.createElement('button');
   saveButton.id = 'save-quick-link';
@@ -145,6 +146,15 @@ const initDOM = () => {
   return { gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem };
 }
 
+const languageNames = new Intl.DisplayNames([chrome.i18n.getUILanguage()], { type: 'language' });
+const getLanguageName = (code) => {
+  try {
+    return languageNames.of(code);
+  } catch (e) {
+    return code;
+  }
+};
+
 const render = async ({ gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem }) => {
   const items = await getItems();
   const { sl: currentSl, tl: currentTl } = getLanguagePair();
@@ -155,7 +165,10 @@ const render = async ({ gftContainer, saveButton, quickLinkList, removeIcon, qui
     const quickLinkItemClone = quickLinkItem.cloneNode(true);
     quickLinkItemClone.dataset.sl = sl;
     quickLinkItemClone.dataset.tl = tl;
-    quickLinkItemClone.textContent = `${sl}:${tl}`;
+    quickLinkItemClone.textContent = `${getLanguageName(sl)} ↔ ${getLanguageName(tl)}`;
+
+    // Style adjustments for text length
+    quickLinkItemClone.style.whiteSpace = 'nowrap';
     quickLinkItemClone.appendChild(removeIcon.cloneNode(true));
 
     if (sl === currentSl && tl === currentTl) {
@@ -176,7 +189,7 @@ const render = async ({ gftContainer, saveButton, quickLinkList, removeIcon, qui
   if (!items.some(item => item.sl === currentSl && item.tl === currentTl)) {
     saveButton.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;" fill="#1967d2" height="18px" viewBox="0 0 24 24" width="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-      <span style="pointer-events: none;" >${currentSl}:${currentTl}<span>
+      <span style="pointer-events: none;" >${getLanguageName(currentSl)} ↔ ${getLanguageName(currentTl)}<span>
     `;
 
     gftContainer.appendChild(saveButton);
