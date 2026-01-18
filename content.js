@@ -133,6 +133,15 @@ const initDOM = () => {
 
   nav.parentNode.appendChild(gftContainer);
 
+  const bmcLink = document.createElement('a');
+  bmcLink.dataset.gtfRole = 'bmc-link';
+  bmcLink.href = 'https://buymeacoffee.com/klikkn';
+  bmcLink.target = '_blank';
+  bmcLink.textContent = '☕';
+  bmcLink.style.order = '99';
+  bmcLink.style.marginLeft = 'auto';
+  gftContainer.appendChild(bmcLink);
+
   return { gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem };
 }
 
@@ -229,6 +238,13 @@ document.addEventListener('click', async (event) => {
         .then(() => {
           render({ gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem });
         });
+      break;
+    case 'bmc-link':
+      chrome.runtime.sendMessage({
+        action: 'track_event',
+        category: 'feature_usage',
+        label: 'bmc_link_click'
+      });
       break;
     default:
       break;
