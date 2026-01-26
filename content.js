@@ -141,7 +141,7 @@ const initDOM = () => {
   bmcLink.textContent = '☕';
   bmcLink.style.order = '99';
   bmcLink.style.marginLeft = 'auto';
-  gftContainer.appendChild(bmcLink);
+  // gftContainer.appendChild(bmcLink); // temporary hide the donations
 
   return { gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem };
 }
