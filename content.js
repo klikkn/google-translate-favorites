@@ -146,9 +146,10 @@ const initDOM = () => {
   return { gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem };
 }
 
-const languageNames = new Intl.DisplayNames([chrome.i18n.getUILanguage()], { type: 'language' });
 const getLanguageName = (code) => {
   try {
+    const locale = document.documentElement.lang || chrome.i18n.getUILanguage();
+    const languageNames = new Intl.DisplayNames([locale], { type: 'language' });
     return languageNames.of(code);
   } catch (e) {
     return code;
