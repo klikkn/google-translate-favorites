@@ -106,9 +106,37 @@ const initDOM = () => {
   quickLinkList.style.display = 'flex';
   quickLinkList.style.alignItems = 'center';
   saveButton.style.margin = '0';
-  saveButton.style.padding = '5px 5px 5px 5px';
+  saveButton.style.padding = '5px';
   saveButton.style.height = 'auto';
-  saveButton.style.gap = '5px';
+  saveButton.style.gap = '0';
+  saveButton.style.overflow = 'hidden';
+  saveButton.style.transition = 'padding 0.2s ease';
+
+  if (!document.getElementById('gft-styles')) {
+    const style = document.createElement('style');
+    style.id = 'gft-styles';
+    style.textContent = `
+      #save-quick-link .gft-label {
+        display: inline-block;
+        max-width: 0;
+        opacity: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        transition: max-width 0.25s ease, opacity 0.2s ease, margin-left 0.2s ease;
+        margin-left: 0;
+        pointer-events: none;
+      }
+      #save-quick-link:hover .gft-label {
+        max-width: 200px;
+        opacity: 1;
+        margin-left: 5px;
+      }
+      #save-quick-link:hover {
+        padding: 5px 10px 5px 5px;
+      }
+    `;
+    document.head.appendChild(style);
+  }
 
   const removeIcon = document.createElement('div');
   removeIcon.dataset.gtfRole = 'quick-link-remove';
@@ -189,8 +217,8 @@ const render = async ({ gftContainer, saveButton, quickLinkList, removeIcon, qui
 
   if (!items.some(item => item.sl === currentSl && item.tl === currentTl)) {
     saveButton.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;" fill="#1967d2" height="18px" viewBox="0 0 24 24" width="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-      <span style="pointer-events: none;" >${getLanguageName(currentSl)} ↔ ${getLanguageName(currentTl)}<span>
+      <svg xmlns="http://www.w3.org/2000/svg" style="pointer-events: none; flex-shrink: 0;" fill="#1967d2" height="18px" viewBox="0 0 24 24" width="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+      <span class="gft-label">${getLanguageName(currentSl)} ↔ ${getLanguageName(currentTl)}</span>
     `;
 
     gftContainer.appendChild(saveButton);
