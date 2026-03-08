@@ -326,12 +326,6 @@ document.addEventListener('click', async (event) => {
 
   switch (event.target.dataset.gtfRole) {
     case 'quick-link-remove':
-      chrome.runtime.sendMessage({
-        action: 'track_event',
-        category: 'feature_usage',
-        label: 'quick_link_remove'
-      });
-
       {
         const sl = event.target.parentNode.dataset.sl;
         const tl = event.target.parentNode.dataset.tl;
@@ -347,35 +341,18 @@ document.addEventListener('click', async (event) => {
       }
       break;
     case 'quick-link-item':
-      chrome.runtime.sendMessage({
-        action: 'track_event',
-        category: 'feature_usage',
-        label: 'quick_link_item'
-      });
-
       setLanguagePair({
         sl: event.target.dataset.sl,
         tl: event.target.dataset.tl,
       })
       break;
     case 'save-quick-link':
-      chrome.runtime.sendMessage({
-        action: 'track_event',
-        category: 'feature_usage',
-        label: 'save_quick_link'
-      });
-
       saveLanguagePair()
         .then(() => {
           render({ gftContainer, saveButton, quickLinkList, removeIcon, quickLinkItem });
         });
       break;
     case 'bmc-link':
-      chrome.runtime.sendMessage({
-        action: 'track_event',
-        category: 'feature_usage',
-        label: 'bmc_link_click'
-      });
       break;
     default:
       break;
